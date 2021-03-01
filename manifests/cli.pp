@@ -37,7 +37,7 @@ class jenkins::cli {
     creates => $jar,
   }
   ~> exec { 'jenkins-cli' :
-    command     => "${download_jar} && ${move_jar}",
+    command     => "sleep 10s && ${download_jar} && ${move_jar}",
     path        => ['/bin', '/usr/bin'],
     cwd         => '/tmp',
     refreshonly => true,
