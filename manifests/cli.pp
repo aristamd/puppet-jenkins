@@ -25,7 +25,7 @@ class jenkins::cli {
   }
 
   $jar = "${jenkins::libdir}/jenkins-cli.jar"
-  $download_jar = "wget https://${::fqdn}/jnlpJars/jenkins-cli.jar -O /tmp/jenkins-cli.jar"
+  $download_jar = 'wget https://localhost/jnlpJars/jenkins-cli.jar -O /tmp/jenkins-cli.jar'
   $move_jar = "mv /tmp/jenkins-cli.jar ${jar}"
   $cli_tries = $jenkins::cli_tries
   $cli_try_sleep = $jenkins::cli_try_sleep
@@ -37,7 +37,7 @@ class jenkins::cli {
     creates => $jar,
   }
   ~> exec { 'jenkins-cli' :
-    command     => "systemctl start jenkins && sleep 20s && ${download_jar} && ${move_jar}",
+    command     => "systemctl start jenkins && sleep 60s && ${download_jar} && ${move_jar}",
     path        => ['/bin', '/usr/bin'],
     cwd         => '/tmp',
     refreshonly => true,
